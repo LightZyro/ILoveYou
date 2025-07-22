@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Terá pra sempre o meu coração. Eu te amo, Jamilly ❤️</title>
+  <style>
+    body {
+      background-color: #1e1e2f;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    .heart {
+      font-size: 80px;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); color: #ff4b5c; }
+      50% { transform: scale(1.2); color: #ff808b; }
+      100% { transform: scale(1); color: #ff4b5c; }
+    }
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1em;
+      border: none;
+      background-color: #ff4b5c;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff2f44;
+    }
+    #mensagem {
+      margin-top: 30px;
+      font-size: 1.2em;
+      font-style: italic;
+    }
+    #contador {
+      margin-top: 20px;
+      font-size: 1.3em;
+      color: #ffd1dc;
+      line-height: 1.6;
+    }
+    img {
+      max-width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ff4b5c;
+      margin-top: 20px;
+    }
+    audio {
+      margin-top: 30px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Terá pra sempre o meu coração. Eu te amo, Jamilly ❤️</h1>
+
+  <!-- IMAGEM -->
+  <img src="gato-rouba-filhote-de-gata-da-vizinha-1602877784633_v2_450x600.jpg" alt="Gatinhos abraçados">
+
+  <div class="heart">❤️</div>
+
+  <!-- CONTADOR DE TEMPO -->
+  <div id="contador"></div>
+
+  <button onclick="mostrarMensagem()">Clique aqui para uma surpresa</button>
+  <div id="mensagem"></div>
+
+  <!-- MÚSICA -->
+  <audio id="musica" autoplay loop controls>
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <script>
+    // CONTADOR
+    function atualizarContador() {
+      const dataInicio = new Date("2024-07-24T12:43:00");
+      const agora = new Date();
+
+      let anos = agora.getFullYear() - dataInicio.getFullYear();
+      let meses = agora.getMonth() - dataInicio.getMonth();
+      let dias = agora.getDate() - dataInicio.getDate();
+
+      if (dias < 0) {
+        meses--;
+        dias += new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+      }
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+
+      const diffMs = agora - dataInicio;
+      const totalSegundos = Math.floor(diffMs / 1000);
+      const horas = Math.floor((totalSegundos % 86400) / 3600);
+      const minutos = Math.floor((totalSegundos % 3600) / 60);
+      const segundos = totalSegundos % 60;
+
+      document.getElementById("contador").innerHTML = `
+        Juntos há:<br>
+        <strong>${anos} anos, ${meses} meses, ${dias} dias</strong><br>
+        <strong>${horas} horas, ${minutos} minutos e ${segundos} segundos</strong>
+      `;
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    // MENSAGENS
+    const mensagens = [
+      "Você é minha missão principal 💘",
+      "Se amor fosse XP, você estaria no nível máximo!",
+      "Você é o bug mais fofo que eu nunca quero corrigir.",
+      "Nosso amor é tipo código limpo: funciona sempre.",
+      "Você é meu player 2 favorito!",
+      "Mesmo em loop infinito, eu escolheria você sempre.",
+      "No jogo da vida, meu prêmio é você. 🎮"
+    ];
+
+    function mostrarMensagem() {
+      const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
+      document.getElementById("mensagem").textContent = msg;
+    }
+
+    // VOLUME SUAVE DA MÚSICA
+    window.addEventListener("DOMContentLoaded", () => {
+      const audio = document.getElementById("musica");
+      if (audio) {
+        audio.volume = 0.3;
+      }
+    });
+  </script>
+
+</body>
+</html>
